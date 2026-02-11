@@ -1,0 +1,13 @@
+{
+  "name": "eco-reward-platform",
+  "version": "1.0.0",
+  "description": "Eco Reward Platform",
+  "scripts": {
+    "dev": "npm run dev --prefix backend",
+    "start": "npm start --prefix backend",
+    "install:backend": "npm install --prefix backend"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
