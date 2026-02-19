@@ -1,17 +1,76 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 
 export default function Navbar() {
+
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const navigate = useNavigate();
+
+  const toggleMenu = () => {
+
+    setMenuOpen(!menuOpen);
+
+  };
+
+  const goHome = () => {
+
+    navigate("/");
+
+    setMenuOpen(false);
+
+  };
+
   return (
-    <nav className="navbar">
-      <Link to="/" className="logo">
-        EcoReward 🌱
-      </Link>
-      <div className="nav-links">
-        <Link to="/">Home</Link>
-        <Link to="/dashboard">Dashboard</Link>
-        <Link to="/leaderboard">Leaderboard</Link>
+
+    <header className="navbar">
+
+      <div className="navbar-inner">
+
+        {/* Logo */}
+        <div className="logo" onClick={goHome}>
+          <i className="fa-solid fa-recycle logo-icon"></i>
+          EcoReward
+        </div>
+
+        {/* Hamburger */}
+        <div
+          className="hamburger"
+          onClick={toggleMenu}
+        >
+
+          <span></span>
+          <span></span>
+          <span></span>
+
+        </div>
+
       </div>
-    </nav>
+
+      {/* Dropdown */}
+      <div className={`dropdown ${menuOpen ? "show" : ""}`}>
+
+        <Link to="/dashboard" onClick={toggleMenu}>
+          Dashboard
+        </Link>
+
+        <Link to="/leaderboard" onClick={toggleMenu}>
+          Leaderboard
+        </Link>
+
+        <Link to="/login" onClick={toggleMenu}>
+          Login
+        </Link>
+
+        <Link to="/signup" onClick={toggleMenu}>
+          Signup
+        </Link>
+
+      </div>
+
+    </header>
+
   );
+
 }
